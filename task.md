@@ -1,0 +1,23 @@
+# Tasks
+
+- [x] Initialize Next.js project using create-next-app
+- [x] Install package dependencies (framer-motion, gsap, lucide-react, lenis, react-countup, embla-carousel-react)
+- [x] Configure the design system, assets, and base styles (globals.css, tailwind.config.ts)
+- [x] Implement layout components (Navbar, Footer)
+- [x] Implement Hero section (parallax, white cars, CTA, trust badges)
+- [x] Implement Services section (animated rental cards)
+- [x] Implement Featured Routes section (route drawings, prices for Hyderabad trips)
+- [x] Implement Fleet section (cars specifications, zoom effects)
+- [x] Implement Why Choose Us section (counters, benefits grid)
+- [x] Implement How It Works section (animated steps)
+- [x] Implement Testimonials section (auto-scrolling Embla slider)
+- [x] Implement Contact section (owner card, calls, WhatsApp links)
+- [x] Build layout and assemble main page (layout.tsx, page.tsx, Lenis scroll)
+- [x] Update Toyota Innova photo reference in Fleet.tsx
+- [x] Swap primary and secondary numbers in components
+  - [x] Update Navbar.tsx calls/WhatsApp numbers
+  - [x] Update Hero.tsx calls/WhatsApp numbers
+  - [x] Update Fleet.tsx default WhatsApp booking links
+- [x] Add SEO assets (robots.txt, sitemap.ts, OpenGraph metadata)
+- [x] Build and verify (build validation, linting)
+- [x] Verify local dev server in the browser (Dev server active on http://localhost:3000, Playwright driver failed)

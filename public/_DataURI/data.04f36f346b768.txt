@@ -1,1 +1,0 @@
-chrome-extension://iadokddofjgcgjpjlfhngclhpmaelnli/src/assets/ai-loader.css
