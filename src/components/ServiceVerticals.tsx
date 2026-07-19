@@ -19,6 +19,8 @@ export default function ServiceVerticals() {
         "Financial Planning",
         "Wealth Creation Strategies",
         "Stocks & Demat",
+        "Dematerialisation of Physical Shares",
+        "Investment & Trading Account Support",
       ],
     },
     {
@@ -61,8 +63,6 @@ export default function ServiceVerticals() {
         "GST Return Filing",
         "Tax Planning",
         "Business Registration",
-        "Dematerialisation of Physical Shares",
-        "Investment & Trading Account Support",
       ],
     },
   ];
