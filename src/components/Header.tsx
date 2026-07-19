@@ -20,6 +20,7 @@ export default function Header() {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Why Us", href: "#why-us" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Partners", href: "#partners" },
     { name: "Contact", href: "#contact" },
   ];
@@ -64,12 +65,12 @@ export default function Header() {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-7">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-warm-white/80 hover:text-gold transition-colors duration-200"
+                className="text-xs lg:text-sm font-medium text-warm-white/80 hover:text-gold transition-colors duration-200"
               >
                 {link.name}
               </a>
@@ -126,7 +127,7 @@ export default function Header() {
                   e.preventDefault();
                   handleLinkClick(link.href);
                 }}
-                className="text-2xl font-semibold text-warm-white hover:text-gold transition-colors duration-200 border-b border-navy-slate pb-2"
+                className="text-xl font-semibold text-warm-white hover:text-gold transition-colors duration-200 border-b border-navy-slate pb-2"
               >
                 {link.name}
               </a>

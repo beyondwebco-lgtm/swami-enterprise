@@ -114,6 +114,34 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
+/* Marquee Animation Styles */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 45s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 45s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
 /* Hide scrollbar default styles for Lenis but keep functionality */
 html.lenis {
   height: auto;
@@ -142,5 +170,9 @@ html.lenis {
     animation-iteration-count: 1 !important;
     transition-duration: 0s !important;
     scroll-behavior: auto !important;
+  }
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
   }
 }
