@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Hero() {
   const handleScroll = (href: string) => {
     const element = document.querySelector(href);
@@ -42,8 +44,19 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
+          {/* Prominent Brand Logo Emblem */}
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-2xl shadow-gold/15">
+            <Image
+              src="/logo.jpeg"
+              alt="Swami Enterprises Logo"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
+
           {/* Tagline Badge */}
-          <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-gold/10 border border-gold/25 mb-8 animate-float">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gold/10 border border-gold/25 mb-8 animate-float">
             <span className="w-2 h-2 rounded-full bg-gold animate-ping" />
             <span className="text-xs uppercase tracking-widest font-semibold text-gold-light">
               SWAMI ENTERPRISES
@@ -58,19 +71,13 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Hero Subtext */}
-          <p className="text-base sm:text-lg lg:text-xl text-warm-white/70 font-light leading-relaxed mb-8 max-w-2xl mx-auto">
-            At Swami Enterprises, we help individuals, families, and businesses
-            make informed financial decisions through trusted advice, personalised
-            solutions, and professional expertise.
+          {/* Hero Subtitle */}
+          <p className="text-base sm:text-lg text-warm-white/70 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+            Comprehensive financial advisory, mutual fund investments, equity portfolios,
+            insurance protection, borrowing guidance, and tax compliance coordination.
           </p>
 
-          {/* Supporting line */}
-          <p className="text-xs sm:text-sm uppercase tracking-widest text-gold font-bold mb-10">
-            Your Financial Goals. Our Expertise. Your Success.
-          </p>
-
-          {/* Hero CTAs */}
+          {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#contact"
@@ -78,7 +85,7 @@ export default function Hero() {
                 e.preventDefault();
                 handleScroll("#contact");
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded shadow-lg shadow-gold/10 hover:shadow-gold/20 hover:-translate-y-0.5 transition-all duration-200"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/20 hover:-translate-y-0.5"
             >
               Book a Free Consultation
             </a>
@@ -88,7 +95,7 @@ export default function Hero() {
                 e.preventDefault();
                 handleScroll("#services");
               }}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-warm-white bg-navy-slate hover:bg-navy-light/60 border border-navy-light/40 rounded hover:-translate-y-0.5 transition-all duration-200"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-warm-white hover:text-gold bg-navy-slate/50 hover:bg-navy-slate border border-gold/20 hover:border-gold/40 rounded-lg transition-all duration-300"
             >
               Explore Our Services
             </a>

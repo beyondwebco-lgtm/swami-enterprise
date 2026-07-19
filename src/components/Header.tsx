@@ -49,7 +49,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo on the left */}
           <a href="#" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 overflow-hidden rounded-md border border-gold/30">
+            <div className="relative w-16 h-16 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md">
               <Image
                 src="/logo.jpeg"
                 alt="Swami Enterprises Logo"

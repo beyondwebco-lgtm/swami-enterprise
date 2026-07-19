@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Brand Info (4 columns) */}
           <div className="lg:col-span-4 flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="relative w-10 h-10 overflow-hidden rounded-md border border-gold/30">
+              <div className="relative w-16 h-16 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md">
                 <Image
                   src="/logo.jpeg"
                   alt="Swami Enterprises Logo"
