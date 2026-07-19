@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 export default function Hero() {
   const handleScroll = (href: string) => {
     const element = document.querySelector(href);
@@ -44,25 +42,6 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Prominent Brand Logo Emblem */}
-          <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-2xl shadow-gold/15">
-            <Image
-              src="/logo.jpeg"
-              alt="Swami Enterprises Logo"
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-
-          {/* Tagline Badge */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gold/10 border border-gold/25 mb-8 animate-float">
-            <span className="w-2 h-2 rounded-full bg-gold animate-ping" />
-            <span className="text-xs uppercase tracking-widest font-semibold text-gold-light">
-              SWAMI ENTERPRISES
-            </span>
-          </div>
-
           {/* Hero Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-warm-white leading-tight mb-6">
             Guiding Your Financial Future with{" "}
