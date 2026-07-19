@@ -99,7 +99,11 @@ export default function ServiceVerticals() {
           {verticals.map((vert) => (
             <div
               key={vert.id}
-              className="glow-card glass-card flex flex-col justify-between p-6 rounded-xl border-2 border-pink-500 shadow-lg shadow-pink-500/20 hover:border-pink-400 hover:shadow-xl hover:shadow-pink-500/30 hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
+              style={{
+                border: "3px solid #B8860B",
+                boxShadow: "0 10px 30px rgba(139, 107, 31, 0.22)",
+              }}
+              className="glass-card flex flex-col justify-between p-6 rounded-xl hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(139,107,31,0.4)] transition-all duration-300 relative group overflow-hidden"
             >
               <div>
                 {/* Visual Image Banner */}
