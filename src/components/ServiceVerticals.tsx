@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { TrendingUp, ShieldAlert, Landmark, FileText, CheckCircle2 } from "lucide-react";
 
 export default function ServiceVerticals() {
@@ -7,6 +8,7 @@ export default function ServiceVerticals() {
     {
       id: "invest",
       title: "Invest",
+      image: "/services/invest.jpg",
       icon: <TrendingUp className="w-8 h-8 text-gold" />,
       description: "Build long-term wealth with disciplined, research-driven investment strategies aligned with your financial goals.",
       services: [
@@ -22,6 +24,7 @@ export default function ServiceVerticals() {
     {
       id: "protect",
       title: "Protect",
+      image: "/services/protect.jpg",
       icon: <ShieldAlert className="w-8 h-8 text-gold" />,
       description: "Protect what matters most with insurance solutions designed around your family, health, assets, and business.",
       services: [
@@ -35,6 +38,7 @@ export default function ServiceVerticals() {
     {
       id: "borrow",
       title: "Borrow",
+      image: "/services/borrow.jpg",
       icon: <Landmark className="w-8 h-8 text-gold" />,
       description: "Get guidance for suitable borrowing solutions with transparent support throughout the process.",
       services: [
@@ -48,6 +52,7 @@ export default function ServiceVerticals() {
     {
       id: "comply",
       title: "Comply",
+      image: "/services/comply.jpg",
       icon: <FileText className="w-8 h-8 text-gold" />,
       description: "Stay financially organised and compliant with dependable tax and business-support services.",
       services: [
@@ -94,9 +99,21 @@ export default function ServiceVerticals() {
           {verticals.map((vert) => (
             <div
               key={vert.id}
-              className="glow-card glass-card flex flex-col justify-between p-6 rounded-[16px] border-2 border-[#8B6B1F] hover:border-[#C89B3C] shadow-lg shadow-[#8B6B1F]/10 hover:shadow-xl hover:shadow-[#C89B3C]/20 hover:-translate-y-1.5 transition-all duration-300 relative group"
+              className="glow-card glass-card flex flex-col justify-between p-6 rounded-[16px] border-2 border-[#8B6B1F] hover:border-[#C89B3C] shadow-lg shadow-[#8B6B1F]/10 hover:shadow-xl hover:shadow-[#C89B3C]/20 hover:-translate-y-1.5 transition-all duration-300 relative group overflow-hidden"
             >
               <div>
+                {/* Visual Image Banner */}
+                <div className="relative w-full aspect-[16/9] mb-6 rounded-lg overflow-hidden border border-gold/20 shadow-md">
+                  <Image
+                    src={vert.image}
+                    alt={`${vert.title} Services - Swami Enterprises`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent pointer-events-none" />
+                </div>
+
                 {/* Header info */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="p-3 bg-navy-slate/50 border border-gold/15 rounded-lg">
