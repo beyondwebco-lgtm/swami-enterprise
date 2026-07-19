@@ -55,7 +55,7 @@ export default function FounderProfile() {
               Leadership
             </h2>
             <h3 className="text-3xl sm:text-4xl font-bold text-warm-white leading-tight mb-6">
-              Meet Mr. Sameer Dalvi
+              Mr. Sameer Dalvi
             </h3>
 
             {/* Elegant Divider */}
