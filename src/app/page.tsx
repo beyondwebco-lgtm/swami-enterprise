@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import VisionMission from "@/components/VisionMission";
+import SocialSection from "@/components/SocialSection";
 import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Testimonials />
       <Partners />
       <VisionMission />
+      <SocialSection />
       <ContactForm />
     </>
   );

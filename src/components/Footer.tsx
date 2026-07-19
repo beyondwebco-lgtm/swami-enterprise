@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
 export default function Footer() {
   const handleScroll = (href: string) => {
@@ -10,11 +11,17 @@ export default function Footer() {
     }
   };
 
+  const linkedinUrl =
+    "https://www.linkedin.com/in/swamienterprise2026?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+  const instagramUrl =
+    "https://www.instagram.com/swamienterprises2026?utm_source=qr&igsh=bmhyYzQ4cHM3MmJh";
+
   const navLinks = [
     { name: "Home", href: "#" },
     { name: "About Us", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Why Us", href: "#why-us" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Partners", href: "#partners" },
     { name: "Contact", href: "#contact" },
   ];
@@ -58,6 +65,33 @@ export default function Footer() {
               insurance protection, borrowing guidance, and tax compliance coordination.
               We focus on enabling sustainable wealth building and long-term client success.
             </p>
+
+            {/* Follow Us in Footer */}
+            <div className="pt-2">
+              <span className="text-[10px] uppercase tracking-widest font-semibold text-gold block mb-2.5">
+                Follow Us
+              </span>
+              <div className="flex items-center space-x-3">
+                <a
+                  href={linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-gold hover:text-primary-hover hover:scale-105 transition-all duration-300 shadow-md"
+                >
+                  <LinkedinIcon className="w-4.5 h-4.5 fill-current" />
+                </a>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-gold hover:text-primary-hover hover:scale-105 transition-all duration-300 shadow-md"
+                >
+                  <InstagramIcon className="w-4.5 h-4.5" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links (2 columns) */}

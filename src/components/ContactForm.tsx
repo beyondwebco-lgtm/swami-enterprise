@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -15,6 +16,11 @@ export default function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const linkedinUrl =
+    "https://www.linkedin.com/in/swamienterprise2026?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+  const instagramUrl =
+    "https://www.instagram.com/swamienterprises2026?utm_source=qr&igsh=bmhyYzQ4cHM3MmJh";
 
   useEffect(() => {
     // Listen to service selections from Service Cards
@@ -74,7 +80,7 @@ export default function ContactForm() {
     setMessage("");
     setConsent(false);
 
-    // Auto-hide success screen after 5 seconds
+    // Auto-hide success screen after 6 seconds
     setTimeout(() => {
       setIsSuccess(false);
     }, 6000);
@@ -152,6 +158,35 @@ export default function ContactForm() {
                   <p className="text-sm font-medium text-warm-white mt-0.5 leading-snug">
                     Mumbai, Maharashtra, India
                   </p>
+                </div>
+              </div>
+
+              {/* Follow Us Section */}
+              <div className="p-4 rounded-lg bg-navy-slate/20 border border-gold/5">
+                <p className="text-xs text-warm-white/50 uppercase tracking-widest font-semibold mb-3">
+                  Follow Us
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="inline-flex items-center space-x-2.5 px-4 py-2.5 rounded-md bg-navy-slate/60 border border-gold/15 hover:border-gold/40 text-warm-white hover:text-gold text-xs font-medium transition-all duration-300 group"
+                  >
+                    <LinkedinIcon className="w-4 h-4 text-gold group-hover:scale-110 transition-transform duration-300" />
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="inline-flex items-center space-x-2.5 px-4 py-2.5 rounded-md bg-navy-slate/60 border border-gold/15 hover:border-gold/40 text-warm-white hover:text-gold text-xs font-medium transition-all duration-300 group"
+                  >
+                    <InstagramIcon className="w-4 h-4 text-gold group-hover:scale-110 transition-transform duration-300" />
+                    <span>Instagram</span>
+                  </a>
                 </div>
               </div>
             </div>

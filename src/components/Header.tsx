@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,12 +34,15 @@ export default function Header() {
     }
   };
 
+  const linkedinUrl =
+    "https://www.linkedin.com/in/swamienterprise2026?utm_source=share_via&utm_content=profile&utm_medium=member_android";
+  const instagramUrl =
+    "https://www.instagram.com/swamienterprises2026?utm_source=qr&igsh=bmhyYzQ4cHM3MmJh";
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "glass-nav shadow-lg py-3"
-          : "bg-transparent py-5"
+        scrolled ? "glass-nav shadow-lg py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +69,7 @@ export default function Header() {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-7">
+          <nav className="hidden lg:flex items-center space-x-7">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -77,8 +81,28 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA & Social Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-center space-x-2 border-r border-gold/20 pr-4">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-2 text-warm-white/80 hover:text-gold hover:scale-110 transition-all duration-300"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+              </a>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="p-2 text-warm-white/80 hover:text-gold hover:scale-110 transition-all duration-300"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+            </div>
             <a
               href="#contact"
               className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded transition-all duration-200 shadow-md hover:shadow-gold/10"
@@ -118,7 +142,7 @@ export default function Header() {
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="flex flex-col h-full justify-between pt-24 pb-10 px-6">
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -134,6 +158,26 @@ export default function Header() {
             ))}
           </div>
           <div className="flex flex-col space-y-4">
+            <div className="flex justify-center space-x-6 py-2">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-2.5 bg-navy-slate/60 border border-gold/20 rounded-full text-warm-white hover:text-gold transition-colors duration-300"
+              >
+                <LinkedinIcon className="w-5 h-5" />
+              </a>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="p-2.5 bg-navy-slate/60 border border-gold/20 rounded-full text-warm-white hover:text-gold transition-colors duration-300"
+              >
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+            </div>
             <a
               href="#contact"
               onClick={() => setIsOpen(false)}
