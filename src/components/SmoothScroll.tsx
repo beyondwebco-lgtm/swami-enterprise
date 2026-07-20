@@ -9,7 +9,15 @@ export default function SmoothScrollProvider({
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    // Initialize Lenis smooth scroll
+    // Only enable Lenis smooth scroll & mouse tracker on desktop screens without reduced motion preference
+    const isMobile = window.innerWidth < 768 || "ontouchstart" in window;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (isMobile || prefersReducedMotion) {
+      return;
+    }
+
+    // Initialize Lenis smooth scroll for desktop
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -25,7 +33,7 @@ export default function SmoothScrollProvider({
     }
     rafId = requestAnimationFrame(raf);
 
-    // Track mouse movement for glow cards
+    // Track mouse movement for desktop glow cards
     const handleMouseMove = (e: MouseEvent) => {
       const cards = document.querySelectorAll(".glow-card");
       cards.forEach((card) => {
@@ -37,7 +45,7 @@ export default function SmoothScrollProvider({
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(rafId);

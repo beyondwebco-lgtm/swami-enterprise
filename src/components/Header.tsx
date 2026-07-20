@@ -53,27 +53,30 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-nav shadow-lg py-3" : "bg-transparent py-5"
+        scrolled
+          ? "glass-nav shadow-lg py-2.5 sm:py-3"
+          : "bg-navy-dark/85 backdrop-blur-md sm:bg-transparent py-3 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo on the left */}
-          <a href="#" className="flex items-center space-x-3 group">
-            <div className="relative w-16 h-16 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md">
+          {/* Responsive High-Contrast Logo Block */}
+          <a href="#" className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md bg-navy-slate/80 flex items-center justify-center">
               <Image
                 src="/logo.jpeg"
                 alt="Swami Enterprises Logo"
                 fill
                 priority
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 40px, (max-width: 768px) 48px, (max-width: 1024px) 56px, 64px"
+                className="object-contain p-0.5 group-hover:scale-105 transition-transform duration-300"
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-wider text-warm-white group-hover:text-gold transition-colors duration-300">
+            <div className="flex flex-col min-w-0 flex-shrink-0">
+              <span className="text-xs sm:text-base md:text-lg font-bold tracking-wider text-warm-white group-hover:text-gold transition-colors duration-300 truncate">
                 SWAMI ENTERPRISES
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-gold/80">
+              <span className="text-[8px] sm:text-[10px] uppercase tracking-widest text-gold/80 truncate hidden sm:block">
                 Guiding Your Financial Future
               </span>
             </div>
@@ -123,11 +126,11 @@ export default function Header() {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="md:hidden">
+          <div className="md:hidden flex-shrink-0 ml-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-warm-white/80 hover:text-gold hover:bg-navy-slate/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold"
+              className="inline-flex items-center justify-center p-2 rounded-md text-warm-white/90 hover:text-gold bg-navy-slate/60 hover:bg-navy-slate border border-gold/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >

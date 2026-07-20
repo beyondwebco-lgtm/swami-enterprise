@@ -61,17 +61,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glassmorphism utilities tailored for Dark Navy/Gold */
 .glass {
-  background: rgba(18, 27, 51, 0.7);
+  background: rgba(18, 27, 51, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .glass-nav {
-  background: rgba(6, 11, 28, 0.85);
+  background: rgba(6, 11, 28, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 }
 
 .glass-card {
@@ -163,16 +163,39 @@ html.lenis {
   pointer-events: none;
 }
 
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  .animate-pulse-slow,
+  .animate-float {
+    animation: none !important;
+  }
+  .glass, .glass-nav, .glass-card {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  .animate-marquee-left {
+    animation-duration: 60s !important;
+  }
+  .animate-marquee-right {
+    animation-duration: 60s !important;
+  }
+}
+
+/* Reduced Motion Preference Support */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-delay: 0s !important;
-    animation-duration: 0s !important;
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0s !important;
+    background-attachment: initial !important;
     scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
   }
   .animate-marquee-left,
-  .animate-marquee-right {
+  .animate-marquee-right,
+  .animate-pulse-slow,
+  .animate-float {
     animation: none !important;
   }
 }

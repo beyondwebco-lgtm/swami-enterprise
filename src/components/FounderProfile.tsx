@@ -33,9 +33,9 @@ export default function FounderProfile() {
                   src="/swamiphoto.png"
                   alt="Mr. Sameer Dalvi - Founder of Swami Enterprises"
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 30vw"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 40vw, 30vw"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                  priority
+                  loading="lazy"
                 />
                 {/* Subtle gradient overlay at bottom for title styling */}
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent opacity-90" />
