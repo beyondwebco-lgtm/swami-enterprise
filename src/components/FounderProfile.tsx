@@ -82,10 +82,14 @@ export default function FounderProfile() {
                     Qualifications
                   </h4>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {qualifications.map((q, idx) => (
-                    <li key={idx} className="text-xs text-warm-white/80 leading-snug">
-                      <strong className="text-gold-light">{q.title}</strong> — {q.desc}
+                    <li key={idx} className="flex items-start text-xs leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0 mr-2 mt-1.5 shadow-sm shadow-gold/40" />
+                      <div>
+                        <strong className="text-gold font-bold">{q.title}</strong>{" "}
+                        <span className="text-warm-white/90">— {q.desc}</span>
+                      </div>
                     </li>
                   ))}
                 </ul>

@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[90dvh] flex items-center justify-center pt-32 pb-24 overflow-hidden bg-navy-dark">
       {/* Background glowing gradients */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gold/5 rounded-full blur-[120px] animate-pulse-slow" />
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-navy-light/20 rounded-full blur-[150px]" />
       </div>
@@ -84,3 +84,4 @@ export default function Hero() {
     </section>
   );
 }
+

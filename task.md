@@ -22,4 +22,9 @@
 - [x] Build and verify (build validation, linting)
 - [x] Verify local dev server in the browser (Dev server active on http://localhost:3000, Playwright driver failed)
 - [x] Copy swamiphoto.png to public directory and update FounderProfile component with founder photo
+- [x] Remove Stay Connected social section from landing page
+- [x] Update qualification title/description colors in FounderProfile
+- [x] Clean repository root directory (moved images to public/)
+- [x] Update README.md, AGENTS.md, and CLAUDE.md documentation
+
 
