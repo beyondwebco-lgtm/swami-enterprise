@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BookOpen, Award, FileCheck } from "lucide-react";
 
 export default function FounderProfile() {
@@ -24,25 +25,26 @@ export default function FounderProfile() {
     <section className="relative py-24 bg-navy-slate/40 border-t border-navy-slate/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Portrait Placeholder on the left (5 columns) */}
+          {/* Founder Portrait on the left (5 columns) */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-[4/5] rounded-xl overflow-hidden border border-gold/20 bg-navy-slate/50 p-1 shadow-2xl">
-              <div className="w-full h-full flex flex-col items-center justify-center border border-gold/10 rounded-lg p-6 bg-gradient-to-b from-navy-slate/20 to-navy-dark">
-                {/* Silhouette placeholder visual */}
-                <div className="w-24 h-24 rounded-full bg-navy-light/40 flex items-center justify-center border border-gold/20 mb-6">
-                  <svg className="w-12 h-12 text-gold/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <h4 className="text-lg font-bold text-warm-white tracking-wide">
-                  Mr. Sameer Dalvi
-                </h4>
-                <p className="text-xs uppercase tracking-widest text-gold mt-1">
-                  Proprietor & Founder
-                </p>
-                <div className="mt-8 text-center px-4 py-2 border border-gold/10 rounded bg-navy-dark/40">
-                  <p className="text-[10px] uppercase tracking-widest text-warm-white/40">
-                    Portrait Pending Approval
+            <div className="relative w-full max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border border-gold/30 bg-navy-slate/50 p-2 shadow-2xl group hover:border-gold/60 transition-all duration-500">
+              <div className="relative w-full h-full rounded-xl overflow-hidden">
+                <Image
+                  src="/swamiphoto.png"
+                  alt="Mr. Sameer Dalvi - Founder of Swami Enterprises"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 30vw"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
+                {/* Subtle gradient overlay at bottom for title styling */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/20 to-transparent opacity-90" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+                  <h4 className="text-xl font-bold text-warm-white tracking-wide shadow-sm">
+                    Mr. Sameer Dalvi
+                  </h4>
+                  <p className="text-xs uppercase tracking-widest text-gold mt-1 font-semibold">
+                    Proprietor & Founder
                   </p>
                 </div>
               </div>

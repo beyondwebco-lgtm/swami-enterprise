@@ -21,3 +21,5 @@
 - [x] Add SEO assets (robots.txt, sitemap.ts, OpenGraph metadata)
 - [x] Build and verify (build validation, linting)
 - [x] Verify local dev server in the browser (Dev server active on http://localhost:3000, Playwright driver failed)
+- [x] Copy swamiphoto.png to public directory and update FounderProfile component with founder photo
+
