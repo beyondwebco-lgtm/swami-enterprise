@@ -67,15 +67,47 @@ export default function ServiceVerticals() {
     },
   ];
 
+  const VERTICAL_FORMS: { [key: string]: { url: string; title: string; subtitle: string } } = {
+    Invest: {
+      url: "https://docs.google.com/forms/d/e/1FAIpQLScEZ9xYGq6xKnD3QLPZlXHeQo1U1rrVpH2-9QyJJeP8KDhpsA/viewform",
+      title: "Mutual Fund Enquiry Form",
+      subtitle: "Invest & Wealth Creation",
+    },
+    Protect: {
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfHl3pAe_638Y5nUd0fZ2u7fHL1XVFZom345PoesTBgrbmouA/viewform",
+      title: "Health Insurance Enquiry Form",
+      subtitle: "Family & Health Coverage",
+    },
+    Borrow: {
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSeYMI2mUSbJFfve2UnTpWG8tksaUqfHIWP10GVd1pS34btXSg/viewform",
+      title: "Loan Enquiry Form",
+      subtitle: "Home, Personal & Business Loans",
+    },
+    Comply: {
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+      title: "Pre-Meeting Form",
+      subtitle: "Consultation & Compliance Support",
+    },
+  };
+
   const handleEnquire = (serviceName: string) => {
-    // Custom event to update Contact Form selection
-    const event = new CustomEvent("swami-service-select", { detail: serviceName });
-    window.dispatchEvent(event);
-    
-    // Scroll down to contact section
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+    const formData = VERTICAL_FORMS[serviceName];
+    if (formData) {
+      const event = new CustomEvent("swami-open-form", {
+        detail: {
+          url: formData.url,
+          title: formData.title,
+          description: formData.subtitle,
+        },
+      });
+      window.dispatchEvent(event);
+    } else {
+      const event = new CustomEvent("swami-service-select", { detail: serviceName });
+      window.dispatchEvent(event);
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 

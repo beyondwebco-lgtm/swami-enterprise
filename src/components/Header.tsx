@@ -20,6 +20,7 @@ export default function Header() {
     { name: "Home", href: "#" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
+    { name: "Forms", href: "#online-forms" },
     { name: "Why Us", href: "#why-us" },
     { name: "Testimonials", href: "#testimonials" },
     { name: "Partners", href: "#partners" },
@@ -32,6 +33,19 @@ export default function Header() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleBookConsultation = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const event = new CustomEvent("swami-open-form", {
+      detail: {
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+        title: "Pre-Meeting Form",
+        description: "Schedule & Prepare Your Consultation",
+      },
+    });
+    window.dispatchEvent(event);
   };
 
   const linkedinUrl =
@@ -103,12 +117,12 @@ export default function Header() {
                 <InstagramIcon className="w-4 h-4" />
               </a>
             </div>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded transition-all duration-200 shadow-md hover:shadow-gold/10"
+            <button
+              onClick={handleBookConsultation}
+              className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded transition-all duration-200 shadow-md hover:shadow-gold/10 cursor-pointer"
             >
               Book a Free Consultation
-            </a>
+            </button>
           </div>
 
           {/* Mobile hamburger menu */}
@@ -178,13 +192,12 @@ export default function Header() {
                 <InstagramIcon className="w-5 h-5" />
               </a>
             </div>
-            <a
-              href="#contact"
-              onClick={() => setIsOpen(false)}
-              className="w-full text-center py-4 font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light rounded transition-colors duration-200"
+            <button
+              onClick={handleBookConsultation}
+              className="w-full text-center py-4 font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light rounded transition-colors duration-200 cursor-pointer"
             >
               Book a Free Consultation
-            </a>
+            </button>
             <div className="text-center text-xs text-warm-white/50">
               <a href="tel:+919769042701" className="hover:text-gold block mb-1">
                 +91 97690 42701

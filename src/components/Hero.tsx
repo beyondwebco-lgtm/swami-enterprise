@@ -8,6 +8,18 @@ export default function Hero() {
     }
   };
 
+  const handlePreMeetingForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const event = new CustomEvent("swami-open-form", {
+      detail: {
+        url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+        title: "Pre-Meeting Form",
+        description: "Schedule & Prepare Your Consultation",
+      },
+    });
+    window.dispatchEvent(event);
+  };
+
   return (
     <section className="relative min-h-[90dvh] flex items-center justify-center pt-32 pb-24 overflow-hidden bg-navy-dark">
       {/* Background glowing gradients */}
@@ -58,16 +70,12 @@ export default function Hero() {
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScroll("#contact");
-              }}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/20 hover:-translate-y-0.5"
+            <button
+              onClick={handlePreMeetingForm}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded-lg transition-all duration-300 shadow-lg hover:shadow-gold/20 hover:-translate-y-0.5 cursor-pointer"
             >
               Book a Free Consultation
-            </a>
+            </button>
             <a
               href="#services"
               onClick={(e) => {

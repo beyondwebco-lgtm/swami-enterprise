@@ -101,11 +101,92 @@ export default function ContactForm() {
                 Start Your Financial Journey with Confidence
               </h3>
               <div className="w-16 h-1 bg-gold rounded mb-8" />
-              <p className="text-sm text-warm-white/70 font-light leading-relaxed mb-10">
+              <p className="text-sm text-warm-white/70 font-light leading-relaxed mb-6">
                 Whether you are investing, protecting your family, planning a loan,
                 or managing compliance, Swami Enterprises is here to guide you. Fill
                 out the form and our advisory team will contact you shortly.
               </p>
+
+              {/* Quick Google Forms Banner */}
+              <div className="p-4 rounded-xl bg-navy-slate/60 border border-gold/25 mb-8">
+                <p className="text-xs font-semibold text-gold uppercase tracking-wider mb-2 flex items-center">
+                  <span className="w-2 h-2 rounded-full bg-gold inline-block mr-2 animate-ping" />
+                  Prefer Google Forms?
+                </p>
+                <p className="text-xs text-warm-white/70 font-light mb-3">
+                  You can also complete our dedicated application forms directly:
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("swami-open-form", {
+                          detail: {
+                            url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+                            title: "Pre-Meeting Form",
+                            description: "Swami Enterprises Consultation",
+                          },
+                        })
+                      );
+                    }}
+                    className="px-2.5 py-1.5 text-[11px] font-medium text-warm-white bg-navy-dark hover:text-gold border border-gold/20 hover:border-gold/50 rounded transition-all text-left truncate"
+                  >
+                    📋 Pre-Meeting Form
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("swami-open-form", {
+                          detail: {
+                            url: "https://docs.google.com/forms/d/e/1FAIpQLScEZ9xYGq6xKnD3QLPZlXHeQo1U1rrVpH2-9QyJJeP8KDhpsA/viewform",
+                            title: "Mutual Fund Enquiry Form",
+                            description: "Mutual Fund & SIP Advisory",
+                          },
+                        })
+                      );
+                    }}
+                    className="px-2.5 py-1.5 text-[11px] font-medium text-warm-white bg-navy-dark hover:text-gold border border-gold/20 hover:border-gold/50 rounded transition-all text-left truncate"
+                  >
+                    📈 Mutual Funds
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("swami-open-form", {
+                          detail: {
+                            url: "https://docs.google.com/forms/d/e/1FAIpQLSfHl3pAe_638Y5nUd0fZ2u7fHL1XVFZom345PoesTBgrbmouA/viewform",
+                            title: "Health Insurance Enquiry Form",
+                            description: "Health & Medical Coverage",
+                          },
+                        })
+                      );
+                    }}
+                    className="px-2.5 py-1.5 text-[11px] font-medium text-warm-white bg-navy-dark hover:text-gold border border-gold/20 hover:border-gold/50 rounded transition-all text-left truncate"
+                  >
+                    🛡️ Health Insurance
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("swami-open-form", {
+                          detail: {
+                            url: "https://docs.google.com/forms/d/e/1FAIpQLSeYMI2mUSbJFfve2UnTpWG8tksaUqfHIWP10GVd1pS34btXSg/viewform",
+                            title: "Loan Enquiry Form",
+                            description: "Home, Personal & Business Loans",
+                          },
+                        })
+                      );
+                    }}
+                    className="px-2.5 py-1.5 text-[11px] font-medium text-warm-white bg-navy-dark hover:text-gold border border-gold/20 hover:border-gold/50 rounded transition-all text-left truncate"
+                  >
+                    🏦 Loan Enquiry
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Direct Contact Blocks */}
