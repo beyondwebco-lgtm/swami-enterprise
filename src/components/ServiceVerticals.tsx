@@ -93,14 +93,7 @@ export default function ServiceVerticals() {
   const handleEnquire = (serviceName: string) => {
     const formData = VERTICAL_FORMS[serviceName];
     if (formData) {
-      const event = new CustomEvent("swami-open-form", {
-        detail: {
-          url: formData.url,
-          title: formData.title,
-          description: formData.subtitle,
-        },
-      });
-      window.dispatchEvent(event);
+      window.open(formData.url, "_blank", "noopener,noreferrer");
     } else {
       const event = new CustomEvent("swami-service-select", { detail: serviceName });
       window.dispatchEvent(event);

@@ -53,14 +53,7 @@ export const GOOGLE_FORMS: FormItem[] = [
 
 export default function QuickFormsSection() {
   const handleOpenForm = (form: FormItem) => {
-    const event = new CustomEvent("swami-open-form", {
-      detail: {
-        url: form.url,
-        title: form.title,
-        description: form.subtitle,
-      },
-    });
-    window.dispatchEvent(event);
+    window.open(form.url, "_blank", "noopener,noreferrer");
   };
 
   return (

@@ -10,14 +10,11 @@ export default function Hero() {
 
   const handlePreMeetingForm = (e: React.MouseEvent) => {
     e.preventDefault();
-    const event = new CustomEvent("swami-open-form", {
-      detail: {
-        url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
-        title: "Pre-Meeting Form",
-        description: "Schedule & Prepare Your Consultation",
-      },
-    });
-    window.dispatchEvent(event);
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
