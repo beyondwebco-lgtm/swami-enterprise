@@ -4,6 +4,17 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
+const navLinks = [
+  { name: "Home", href: "#" },
+  { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Forms", href: "#online-forms" },
+  { name: "Why Us", href: "#why-us" },
+  { name: "Testimonials", href: "#testimonials" },
+  { name: "Partners", href: "#partners" },
+  { name: "Contact", href: "#contact" },
+];
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -16,17 +27,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Forms", href: "#online-forms" },
-    { name: "Why Us", href: "#why-us" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Partners", href: "#partners" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   // Active section tracking with IntersectionObserver
   useEffect(() => {
@@ -75,21 +75,21 @@ export default function Header() {
     setIsOpen(false);
 
     if (href === "#") {
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(0);
+      if (window.lenis) {
+        window.lenis.scrollTo(0);
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
       setActiveSection("Home");
-      window.history.pushState(null, "", " ");
+      window.history.pushState(null, "", window.location.pathname + window.location.search);
       return;
     }
 
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(element, { offset: -80 });
+      if (window.lenis) {
+        window.lenis.scrollTo(element, { offset: -80 });
       } else {
         const navbarHeight = 80;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;

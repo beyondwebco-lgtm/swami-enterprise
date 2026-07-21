@@ -3,6 +3,35 @@
 import Image from "next/image";
 import { TrendingUp, ShieldAlert, Landmark, FileText, CheckCircle2 } from "lucide-react";
 
+interface ServiceFormMapping {
+  url: string;
+  title: string;
+  subtitle: string;
+}
+
+const VERTICAL_FORMS: Record<string, ServiceFormMapping> = {
+  Invest: {
+    url: "https://docs.google.com/forms/d/e/1FAIpQLScEZ9xYGq6xKnD3QLPZlXHeQo1U1rrVpH2-9QyJJeP8KDhpsA/viewform",
+    title: "Mutual Fund Enquiry Form",
+    subtitle: "Invest & Wealth Creation",
+  },
+  Protect: {
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSfHl3pAe_638Y5nUd0fZ2u7fHL1XVFZom345PoesTBgrbmouA/viewform",
+    title: "Health Insurance Enquiry Form",
+    subtitle: "Family & Health Coverage",
+  },
+  Borrow: {
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSeYMI2mUSbJFfve2UnTpWG8tksaUqfHIWP10GVd1pS34btXSg/viewform",
+    title: "Loan Enquiry Form",
+    subtitle: "Home, Personal & Business Loans",
+  },
+  Comply: {
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
+    title: "Pre-Meeting Form",
+    subtitle: "Consultation & Compliance Support",
+  },
+};
+
 export default function ServiceVerticals() {
   const verticals = [
     {
@@ -67,46 +96,15 @@ export default function ServiceVerticals() {
     },
   ];
 
-  const VERTICAL_FORMS: { [key: string]: { url: string; title: string; subtitle: string } } = {
-    Invest: {
-      url: "https://docs.google.com/forms/d/e/1FAIpQLScEZ9xYGq6xKnD3QLPZlXHeQo1U1rrVpH2-9QyJJeP8KDhpsA/viewform",
-      title: "Mutual Fund Enquiry Form",
-      subtitle: "Invest & Wealth Creation",
-    },
-    Protect: {
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSfHl3pAe_638Y5nUd0fZ2u7fHL1XVFZom345PoesTBgrbmouA/viewform",
-      title: "Health Insurance Enquiry Form",
-      subtitle: "Family & Health Coverage",
-    },
-    Borrow: {
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSeYMI2mUSbJFfve2UnTpWG8tksaUqfHIWP10GVd1pS34btXSg/viewform",
-      title: "Loan Enquiry Form",
-      subtitle: "Home, Personal & Business Loans",
-    },
-    Comply: {
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSf0wABbSPo28hLaFsIt_u3Kxj5DkmiycO6BnFmzEVR1lg64qQ/viewform",
-      title: "Pre-Meeting Form",
-      subtitle: "Consultation & Compliance Support",
-    },
-  };
-
   const handleEnquire = (serviceName: string) => {
     const formData = VERTICAL_FORMS[serviceName];
     if (formData) {
       window.open(formData.url, "_blank", "noopener,noreferrer");
-    } else {
-      const event = new CustomEvent("swami-service-select", { detail: serviceName });
-      window.dispatchEvent(event);
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth" });
-      }
     }
   };
 
   return (
     <section id="services" className="relative py-24 bg-navy-dark">
-      {/* Visual glowing accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,7 +129,6 @@ export default function ServiceVerticals() {
               className="glass-card flex flex-col justify-between p-6 rounded-xl hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(139,107,31,0.4)] transition-all duration-300 relative group overflow-hidden"
             >
               <div>
-                {/* Visual Image Banner */}
                 <div className="relative w-full aspect-[16/9] mb-6 rounded-lg overflow-hidden border border-gold/20 shadow-md">
                   <Image
                     src={vert.image}
@@ -144,7 +141,6 @@ export default function ServiceVerticals() {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Header info */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="p-3 bg-navy-slate/50 border border-gold/15 rounded-lg">
                     {vert.icon}
@@ -154,7 +150,6 @@ export default function ServiceVerticals() {
                   </span>
                 </div>
 
-                {/* Vertical Name & Description */}
                 <h3 className="text-2xl font-bold text-warm-white mb-3 tracking-wide">
                   {vert.title}
                 </h3>
@@ -162,10 +157,8 @@ export default function ServiceVerticals() {
                   {vert.description}
                 </p>
 
-                {/* Divider */}
                 <div className="w-full h-[1px] bg-gold/10 mb-6" />
 
-                {/* Sub services list */}
                 <ul className="space-y-3 mb-8">
                   {vert.services.map((item, idx) => (
                     <li key={idx} className="flex items-start text-xs text-warm-white/85">
@@ -176,7 +169,6 @@ export default function ServiceVerticals() {
                 </ul>
               </div>
 
-              {/* Action Button */}
               <button
                 onClick={() => handleEnquire(vert.title)}
                 className="w-full mt-auto inline-flex items-center justify-center px-4 py-3 text-xs font-semibold uppercase tracking-wider text-warm-white hover:text-navy-dark bg-transparent hover:bg-gold border border-gold/45 hover:border-gold rounded transition-all duration-300 shadow-sm"

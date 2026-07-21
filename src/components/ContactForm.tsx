@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2 } from "lucide-react";
 import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
@@ -22,34 +22,25 @@ export default function ContactForm() {
   const instagramUrl =
     "https://www.instagram.com/swamienterprises2026?utm_source=qr&igsh=bmhyYzQ4cHM3MmJh";
 
-  useEffect(() => {
-    // Listen to service selections from Service Cards
-    const handleServiceSelect = (e: Event) => {
-      const serviceName = (e as CustomEvent).detail;
-      setService(serviceName);
-    };
-    window.addEventListener("swami-service-select", handleServiceSelect);
-    return () => window.removeEventListener("swami-service-select", handleServiceSelect);
-  }, []);
+
 
   const validate = () => {
     const tempErrors: { [key: string]: string } = {};
     if (!name.trim()) tempErrors.name = "Full Name is required.";
     
-    // Simple mobile regex validation
     const mobileRegex = /^[6-9]\d{9}$/;
     const cleanMobile = mobile.replace(/[\s-]/g, "");
     if (!mobile.trim()) {
       tempErrors.mobile = "Mobile Number is required.";
-    } else if (!mobileRegex.test(cleanMobile) && cleanMobile.length !== 10) {
-      tempErrors.mobile = "Please enter a valid 10-digit mobile number.";
+    } else if (!mobileRegex.test(cleanMobile)) {
+      tempErrors.mobile = "Please enter a valid 10-digit mobile number starting with 6-9.";
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.trim()) {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
       tempErrors.email = "Email Address is required.";
-    } else if (!emailRegex.test(email)) {
+    } else if (!emailRegex.test(trimmedEmail)) {
       tempErrors.email = "Please enter a valid email address.";
     }
 
@@ -241,17 +232,17 @@ export default function ContactForm() {
           <div className="lg:col-span-7">
             <div className="glass p-8 rounded-xl border border-gold/15 shadow-xl relative overflow-hidden">
               {isSuccess ? (
-                /* Success View */
                 <div className="py-16 text-center flex flex-col items-center justify-center animate-float">
                   <div className="p-4 bg-gold/10 border border-gold/30 rounded-full mb-6">
                     <CheckCircle2 className="w-12 h-12 text-gold animate-pulse" />
                   </div>
                   <h4 className="text-2xl font-bold text-warm-white mb-3">
-                    Enquiry Submitted Successfully!
+                    Enquiry Form Demo Completed!
                   </h4>
                   <p className="text-sm text-warm-white/70 font-light leading-relaxed max-w-md">
-                    Thank you for connecting with Swami Enterprises. Our financial advisors
-                    will review your inquiry and get in touch with you shortly.
+                    Swami Enterprises is currently using this form in offline/demonstration mode. 
+                    Your message was simulated successfully but has <strong>not</strong> been sent to a backend server. 
+                    Please reach out to us directly via Phone or Email to submit your request!
                   </p>
                   <button
                     onClick={() => setIsSuccess(false)}
