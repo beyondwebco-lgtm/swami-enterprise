@@ -7,6 +7,7 @@ import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,11 +28,83 @@ export default function Header() {
     { name: "Contact", href: "#contact" },
   ];
 
-  const handleLinkClick = (href: string) => {
+  // Active section tracking with IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ["about", "services", "online-forms", "why-us", "testimonials", "partners", "contact"];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: "-30% 0px -60% 0px", // Trigger when section is in the focal area of the screen
+      threshold: 0,
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const matchingLink = navLinks.find((link) => link.href === `#${id}`);
+          if (matchingLink) {
+            setActiveSection(matchingLink.name);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const handleScroll = () => {
+      if (window.scrollY < 80) {
+        setActiveSection("Home");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
     setIsOpen(false);
-    const element = document.querySelector(href);
+
+    if (href === "#") {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      setActiveSection("Home");
+      window.history.pushState(null, "", " ");
+      return;
+    }
+
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, { offset: -80 });
+      } else {
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+      
+      const matchingLink = navLinks.find((link) => link.href === href);
+      if (matchingLink) {
+        setActiveSection(matchingLink.name);
+      }
+      window.history.pushState(null, "", href);
     }
   };
 
@@ -61,7 +134,11 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Responsive High-Contrast Logo Block */}
-          <a href="#" className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0">
+          <a
+            href="#"
+            onClick={(e) => handleLinkClick(e, "#")}
+            className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0"
+          >
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md bg-navy-slate/80 flex items-center justify-center">
               <Image
                 src="/logo.jpeg"
@@ -88,7 +165,12 @@ export default function Header() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs lg:text-sm font-medium text-warm-white/80 hover:text-gold transition-colors duration-200"
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`text-xs lg:text-sm font-medium transition-colors duration-200 ${
+                  activeSection === link.name
+                    ? "text-gold font-semibold"
+                    : "text-warm-white/80 hover:text-gold"
+                }`}
               >
                 {link.name}
               </a>
@@ -126,7 +208,7 @@ export default function Header() {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="md:hidden flex-shrink-0 ml-2">
+          <div className="lg:hidden flex-shrink-0 ml-2">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
@@ -136,11 +218,11 @@ export default function Header() {
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
-                <svg className="h-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="h-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
@@ -151,7 +233,7 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-navy-dark/95 backdrop-blur-lg transform ${
+        className={`lg:hidden fixed inset-0 z-40 bg-navy-dark/95 backdrop-blur-lg transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
@@ -161,11 +243,12 @@ export default function Header() {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.href);
-                }}
-                className="text-xl font-semibold text-warm-white hover:text-gold transition-colors duration-200 border-b border-navy-slate pb-2"
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`text-xl font-semibold transition-colors duration-200 border-b border-navy-slate pb-2 ${
+                  activeSection === link.name
+                    ? "text-gold"
+                    : "text-warm-white hover:text-gold"
+                }`}
               >
                 {link.name}
               </a>
