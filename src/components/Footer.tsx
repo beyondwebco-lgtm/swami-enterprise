@@ -87,18 +87,18 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-gold hover:text-primary-hover hover:scale-105 transition-all duration-300 shadow-md"
+                  className="w-9 h-9 rounded-full bg-navy-slate/85 hover:bg-gold border border-gold/20 hover:border-gold/50 flex items-center justify-center text-gold hover:text-navy-dark hover:scale-105 transition-all duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-navy-dark"
                 >
-                  <LinkedinIcon className="w-4.5 h-4.5 fill-current" />
+                  <LinkedinIcon className="w-5 h-5 fill-current" />
                 </a>
                 <a
                   href={instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-gold hover:text-primary-hover hover:scale-105 transition-all duration-300 shadow-md"
+                  className="w-9 h-9 rounded-full bg-navy-slate/85 hover:bg-gold border border-gold/20 hover:border-gold/50 flex items-center justify-center text-gold hover:text-navy-dark hover:scale-105 transition-all duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-navy-dark"
                 >
-                  <InstagramIcon className="w-4.5 h-4.5" />
+                  <InstagramIcon className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-xs font-light">
               <li className="flex flex-col">
-                <span className="text-warm-white/40 uppercase tracking-widest text-[9px] font-semibold mb-0.5">
+                <span className="text-warm-white/60 uppercase tracking-widest text-[9px] font-semibold mb-0.5">
                   Email
                 </span>
                 <a
@@ -170,7 +170,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex flex-col">
-                <span className="text-warm-white/40 uppercase tracking-widest text-[9px] font-semibold mb-0.5">
+                <span className="text-warm-white/60 uppercase tracking-widest text-[9px] font-semibold mb-0.5">
                   Phone
                 </span>
                 <a href="tel:+919769042701" className="hover:text-gold font-medium">
@@ -178,7 +178,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="text-warm-white/60">
-                <span className="text-warm-white/40 uppercase tracking-widest text-[9px] font-semibold mb-0.5 block">
+                <span className="text-warm-white/60 uppercase tracking-widest text-[9px] font-semibold mb-0.5 block">
                   Office
                 </span>
                 Mumbai, Maharashtra, India
@@ -193,7 +193,7 @@ export default function Footer() {
 
         {/* Legal Disclaimer & Regulatory Info */}
         <div className="text-center max-w-4xl mx-auto mb-8">
-          <p className="text-[10px] text-warm-white/40 font-light leading-relaxed">
+          <p className="text-[10px] text-warm-white/60 font-light leading-relaxed">
             <strong>Legal Disclaimer:</strong> Investment and insurance decisions involve risk
             and are subject to product terms, market conditions, and suitability. Please read all
             relevant offer documents, terms and conditions, and disclosures carefully before making
@@ -203,7 +203,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright info */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-warm-white/45">
+        <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-warm-white/60">
           <p>© 2026 Swami Enterprises. All rights reserved.</p>
           <div className="flex space-x-4 mt-2 sm:mt-0">
             <span className="text-warm-white/30">Privacy Policy</span>

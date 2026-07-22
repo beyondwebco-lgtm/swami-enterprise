@@ -20,7 +20,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://swami-enterprise.vercel.app"),
+  metadataBase: new URL("https://swamienterprises.com"),
   title: "Swami Enterprises | Guiding Your Financial Future",
   description: "Swami Enterprises helps individuals, families, and businesses make informed financial decisions through trusted advisory, personalised investment strategies, insurance protection, borrowing guidance, and tax compliance.",
   keywords: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Swami Enterprises | Guiding Your Financial Future",
     description: "Personalised, research-driven financial advice. One-stop financial solutions for investments, protection, borrowing, and business compliance.",
-    url: "https://swami-enterprise.vercel.app",
+    url: "https://swamienterprises.com",
     siteName: "Swami Enterprises",
     images: [
       {

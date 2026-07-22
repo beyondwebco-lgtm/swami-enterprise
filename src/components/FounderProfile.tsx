@@ -30,7 +30,7 @@ export default function FounderProfile() {
             <div className="relative w-full max-w-sm aspect-[4/5] rounded-2xl overflow-hidden border border-gold/30 bg-navy-slate/50 p-2 shadow-2xl group hover:border-gold/60 transition-all duration-500">
               <div className="relative w-full h-full rounded-xl overflow-hidden">
                 <Image
-                  src="/swamiphoto.png"
+                  src="/swamiphoto.webp"
                   alt="Mr. Sameer Dalvi - Founder of Swami Enterprises"
                   fill
                   sizes="(max-width: 768px) 90vw, (max-width: 1200px) 40vw, 30vw"

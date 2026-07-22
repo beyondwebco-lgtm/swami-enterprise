@@ -78,9 +78,10 @@ export default function Testimonials() {
   const firstRow = testimonials.slice(0, 5);
   const secondRow = testimonials.slice(5, 10);
 
-  const renderCard = (t: typeof testimonials[0], index: number) => (
+  const renderCard = (t: typeof testimonials[0], index: number, ariaHidden?: boolean) => (
     <div
       key={index}
+      aria-hidden={ariaHidden ? "true" : undefined}
       className="w-[340px] sm:w-[400px] flex-shrink-0 glass-card p-6 rounded-xl border border-gold/10 mx-3 relative flex flex-col justify-between group hover:border-gold/30 transition-all duration-300"
     >
       <div>
@@ -147,7 +148,7 @@ export default function Testimonials() {
         <div className="animate-marquee-left">
           {/* Duplicate row items to create seamless 100% infinite loop */}
           {firstRow.map((t, idx) => renderCard(t, idx))}
-          {firstRow.map((t, idx) => renderCard(t, idx + 100))}
+          {firstRow.map((t, idx) => renderCard(t, idx + 100, true))}
         </div>
       </div>
 
@@ -160,7 +161,7 @@ export default function Testimonials() {
         <div className="animate-marquee-right">
           {/* Duplicate row items to create seamless 100% infinite loop */}
           {secondRow.map((t, idx) => renderCard(t, idx))}
-          {secondRow.map((t, idx) => renderCard(t, idx + 200))}
+          {secondRow.map((t, idx) => renderCard(t, idx + 200, true))}
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarCheck, TrendingUp, ShieldAlert, Landmark, ArrowRight, ExternalLink } from "lucide-react";
+import { CalendarCheck, TrendingUp, ShieldAlert, Landmark, ArrowRight } from "lucide-react";
 
 export interface FormItem {
   id: string;
@@ -52,9 +52,6 @@ export const GOOGLE_FORMS: FormItem[] = [
 ];
 
 export default function QuickFormsSection() {
-  const handleOpenForm = (form: FormItem) => {
-    window.open(form.url, "_blank", "noopener,noreferrer");
-  };
 
   return (
     <section id="online-forms" className="relative py-20 bg-navy-dark border-t border-gold/15">
@@ -109,24 +106,16 @@ export default function QuickFormsSection() {
                 </p>
               </div>
 
-              {/* Action Buttons */}
-              <div className="space-y-2 mt-4 pt-4 border-t border-gold/15">
-                <button
-                  onClick={() => handleOpenForm(form)}
-                  className="w-full inline-flex items-center justify-center px-4 py-3 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded-lg transition-all duration-300 shadow-md"
-                >
-                  <span>Fill Form Here</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-2" />
-                </button>
-
+              {/* Action Button */}
+              <div className="mt-4 pt-4 border-t border-gold/15">
                 <a
                   href={form.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-4 py-2 text-[11px] font-medium text-warm-white/60 hover:text-gold hover:bg-navy-dark/50 rounded-lg transition-colors"
+                  className="w-full inline-flex items-center justify-center px-4 py-3 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded-lg transition-all duration-300 shadow-md hover:shadow-gold/10"
                 >
-                  <span>Open in Google Forms</span>
-                  <ExternalLink className="w-3 h-3 ml-1.5" />
+                  <span>Fill Form Here</span>
+                  <ArrowRight className="w-3.5 h-3.5 ml-2" />
                 </a>
               </div>
             </div>
