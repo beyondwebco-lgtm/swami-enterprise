@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const navLinks = [
@@ -18,6 +18,9 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
+  const menuRef = useRef<HTMLElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +33,24 @@ export default function Header() {
   // Lock background scroll and control Lenis
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      // Prevent scrollbar layout shift on desktop (if any)
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
       window.lenis?.stop();
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
       window.lenis?.start();
     }
     return () => {
-      document.body.classList.remove("overflow-hidden");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
       window.lenis?.start();
     };
   }, [isOpen]);
@@ -52,6 +65,30 @@ export default function Header() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  // Auto-close menu when resizing to desktop widths (>= 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Focus management: Shift focus into menu when open, return to hamburger when closed
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (isOpen) {
+      menuRef.current?.focus();
+    } else {
+      hamburgerRef.current?.focus();
+    }
+  }, [isOpen]);
 
   // Active section tracking with IntersectionObserver
   useEffect(() => {
@@ -212,6 +249,7 @@ export default function Header() {
           {/* Mobile hamburger menu */}
           <div className="lg:hidden flex-shrink-0 ml-2">
             <button
+              ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-warm-white/90 hover:text-gold bg-navy-slate/60 hover:bg-navy-slate border border-gold/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold"
@@ -234,21 +272,32 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      <nav
-        id="mobile-menu"
-        inert={!isOpen}
-        aria-hidden={!isOpen}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) {
-            setIsOpen(false);
-          }
-        }}
-        className={`lg:hidden fixed inset-0 z-40 bg-navy-dark/95 backdrop-blur-lg transform ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
+      {/* Mobile Menu Overlay & Drawer */}
+      <div
+        className={`lg:hidden fixed inset-0 z-[100] transition-all duration-300 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
       >
-        <div className="flex flex-col h-full justify-between pt-24 pb-10 px-6">
+        {/* Backdrop button to close mobile menu */}
+        <button
+          type="button"
+          onClick={() => setIsOpen(false)}
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default w-full h-full border-none focus:outline-none"
+          aria-label="Close mobile menu"
+          tabIndex={isOpen ? 0 : -1}
+        />
+
+        {/* Solid Drawer Panel */}
+        <nav
+          ref={menuRef}
+          tabIndex={-1}
+          id="mobile-menu"
+          inert={!isOpen ? true : undefined}
+          aria-hidden={!isOpen}
+          className={`absolute inset-y-0 right-0 w-full max-w-xs sm:max-w-sm bg-navy-dark border-l border-gold/15 shadow-2xl flex flex-col justify-between pt-24 pb-10 px-6 overflow-y-auto overscroll-contain transform transition-transform duration-300 ease-in-out ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
           <div className="flex flex-col space-y-5">
             {navLinks.map((link) => (
               <a
@@ -281,8 +330,8 @@ export default function Header() {
               </a>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   );
 }
