@@ -33,7 +33,6 @@ export default function Header() {
   // Lock background scroll and control Lenis
   useEffect(() => {
     if (isOpen) {
-      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
       // Prevent scrollbar layout shift on desktop (if any)
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -42,13 +41,11 @@ export default function Header() {
       }
       window.lenis?.stop();
     } else {
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
       window.lenis?.start();
     }
     return () => {
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.body.style.paddingRight = "";
       window.lenis?.start();
@@ -134,6 +131,10 @@ export default function Header() {
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
+    
+    // Resume Lenis immediately so scroll transitions can start before state updates re-enable it asynchronously
+    window.lenis?.start();
+    
     setIsOpen(false);
 
     if (href === "#") {
@@ -196,7 +197,7 @@ export default function Header() {
           <a
             href="#"
             onClick={(e) => handleLinkClick(e, "#")}
-            className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0"
+            className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0 relative z-[110]"
           >
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md bg-navy-slate/80 flex items-center justify-center">
               <Image
@@ -247,7 +248,7 @@ export default function Header() {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="lg:hidden flex-shrink-0 ml-2">
+          <div className="lg:hidden flex-shrink-0 ml-2 relative z-[110]">
             <button
               ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
