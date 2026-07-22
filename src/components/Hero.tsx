@@ -2,9 +2,19 @@
 
 export default function Hero() {
   const handleScroll = (href: string) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href) as HTMLElement | null;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      if (window.lenis) {
+        window.lenis.scrollTo(element, { offset: -80 });
+      } else {
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarHeight;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
     }
   };
 

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { LinkedinIcon, InstagramIcon } from "@/components/SocialIcons";
 
 const navLinks = [
   { name: "Home", href: "#" },
@@ -26,6 +25,32 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Lock background scroll and control Lenis
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+      window.lenis?.stop();
+    } else {
+      document.body.classList.remove("overflow-hidden");
+      window.lenis?.start();
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      window.lenis?.start();
+    };
+  }, [isOpen]);
+
+  // Keyboard Escape listener to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Active section tracking with IntersectionObserver
@@ -118,10 +143,7 @@ export default function Header() {
     );
   };
 
-  const linkedinUrl =
-    "https://www.linkedin.com/in/swamienterprise2026?utm_source=share_via&utm_content=profile&utm_medium=member_android";
-  const instagramUrl =
-    "https://www.instagram.com/swamienterprises2026?utm_source=qr&igsh=bmhyYzQ4cHM3MmJh";
+  // Social links removed from Header/Navbar as per requirements. Keep in Footer only.
 
   return (
     <header
@@ -177,28 +199,8 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA & Social Buttons */}
+          {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 border-r border-gold/20 pr-4">
-              <a
-                href={linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="p-2 text-warm-white/80 hover:text-gold hover:scale-110 transition-all duration-300"
-              >
-                <LinkedinIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="p-2 text-warm-white/80 hover:text-gold hover:scale-110 transition-all duration-300"
-              >
-                <InstagramIcon className="w-4 h-4" />
-              </a>
-            </div>
             <button
               onClick={handleBookConsultation}
               className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light border border-gold rounded transition-all duration-200 shadow-md hover:shadow-gold/10 cursor-pointer"
@@ -215,6 +217,7 @@ export default function Header() {
               className="inline-flex items-center justify-center p-2 rounded-md text-warm-white/90 hover:text-gold bg-navy-slate/60 hover:bg-navy-slate border border-gold/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
+              aria-label={isOpen ? "Close main menu" : "Open main menu"}
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
@@ -232,7 +235,15 @@ export default function Header() {
       </div>
 
       {/* Mobile Drawer */}
-      <div
+      <nav
+        id="mobile-menu"
+        inert={!isOpen}
+        aria-hidden={!isOpen}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            setIsOpen(false);
+          }
+        }}
         className={`lg:hidden fixed inset-0 z-40 bg-navy-dark/95 backdrop-blur-lg transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
@@ -255,26 +266,6 @@ export default function Header() {
             ))}
           </div>
           <div className="flex flex-col space-y-4">
-            <div className="flex justify-center space-x-6 py-2">
-              <a
-                href={linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="p-2.5 bg-navy-slate/60 border border-gold/20 rounded-full text-warm-white hover:text-gold transition-colors duration-300"
-              >
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="p-2.5 bg-navy-slate/60 border border-gold/20 rounded-full text-warm-white hover:text-gold transition-colors duration-300"
-              >
-                <InstagramIcon className="w-5 h-5" />
-              </a>
-            </div>
             <button
               onClick={handleBookConsultation}
               className="w-full text-center py-4 font-semibold uppercase tracking-wider text-navy-dark bg-gold hover:bg-gold-light rounded transition-colors duration-200 cursor-pointer"
@@ -291,7 +282,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
