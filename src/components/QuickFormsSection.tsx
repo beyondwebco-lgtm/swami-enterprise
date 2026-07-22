@@ -54,7 +54,7 @@ export const GOOGLE_FORMS: FormItem[] = [
 export default function QuickFormsSection() {
 
   return (
-    <section id="online-forms" className="relative py-20 bg-navy-dark border-t border-gold/15">
+    <section id="online-forms" className="relative py-14 sm:py-20 bg-navy-dark border-t border-gold/15">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold/5 rounded-full blur-[180px] pointer-events-none" />
 
@@ -63,9 +63,9 @@ export default function QuickFormsSection() {
           <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
             Quick Application Hub
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold text-warm-white">
+          <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white">
             Specialized Online Enquiry Forms
-          </p>
+          </h3>
           <p className="text-sm text-warm-white/70 font-light mt-3">
             Fill out our dedicated Google Forms to speed up your enquiry or prepare for your advisory session.
           </p>

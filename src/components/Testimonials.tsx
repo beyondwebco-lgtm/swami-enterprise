@@ -82,7 +82,7 @@ export default function Testimonials() {
     <div
       key={index}
       aria-hidden={ariaHidden ? "true" : undefined}
-      className="w-[340px] sm:w-[400px] flex-shrink-0 glass-card p-6 rounded-xl border border-gold/10 mx-3 relative flex flex-col justify-between group hover:border-gold/30 transition-all duration-300"
+      className="w-[290px] xs:w-[340px] sm:w-[400px] flex-shrink-0 glass-card p-6 rounded-xl border border-gold/10 mx-3 relative flex flex-col justify-between group hover:border-gold/30 transition-all duration-300"
     >
       <div>
         {/* Quote Icon & Stars */}
@@ -122,7 +122,7 @@ export default function Testimonials() {
   );
 
   return (
-    <section id="testimonials" className="relative py-24 bg-navy-dark border-t border-navy-slate/40 overflow-hidden">
+    <section id="testimonials" className="relative py-16 sm:py-24 bg-navy-dark border-t border-navy-slate/40 overflow-hidden">
       {/* Background glow overlay */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gold/3 rounded-full blur-[180px] pointer-events-none" />
 
@@ -130,7 +130,7 @@ export default function Testimonials() {
         <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
           Client Experiences & Trust
         </h2>
-        <h3 className="text-3xl sm:text-4xl font-bold text-warm-white">
+        <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white">
           What Our Clients Say
         </h3>
         <div className="w-16 h-1 bg-gold mx-auto mt-4 rounded" />

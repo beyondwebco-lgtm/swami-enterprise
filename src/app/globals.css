@@ -30,6 +30,8 @@
 
 html {
   scroll-padding-top: 80px;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -37,6 +39,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -199,4 +202,12 @@ html.lenis {
   .animate-float {
     animation: none !important;
   }
+}
+
+/* Custom safe-area menu padding classes */
+.safe-pt-menu {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 6rem);
+}
+.safe-pb-menu {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 2.5rem);
 }

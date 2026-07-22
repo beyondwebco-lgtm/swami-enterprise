@@ -74,6 +74,23 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Set inert on sibling elements when menu is open to prevent interaction/tabbing
+  useEffect(() => {
+    const mainEl = document.querySelector("main");
+    const footerEl = document.querySelector("footer");
+    if (isOpen) {
+      mainEl?.setAttribute("inert", "");
+      footerEl?.setAttribute("inert", "");
+    } else {
+      mainEl?.removeAttribute("inert");
+      footerEl?.removeAttribute("inert");
+    }
+    return () => {
+      mainEl?.removeAttribute("inert");
+      footerEl?.removeAttribute("inert");
+    };
+  }, [isOpen]);
+
   // Focus management: Shift focus into menu when open, return to hamburger when closed
   useEffect(() => {
     if (isFirstRender.current) {
@@ -185,19 +202,21 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
+        isOpen ? "z-[150]" : "z-50"
+      } ${
         scrolled
           ? "glass-nav shadow-lg py-2.5 sm:py-3"
           : "bg-navy-dark/85 backdrop-blur-md sm:bg-transparent py-3 sm:py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Responsive High-Contrast Logo Block */}
           <a
             href="#"
             onClick={(e) => handleLinkClick(e, "#")}
-            className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0 relative z-[110]"
+            className="flex items-center space-x-2 sm:space-x-3 group min-w-0 flex-shrink-0 relative z-[160]"
           >
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex-shrink-0 overflow-hidden rounded-lg border-2 border-gold/40 shadow-md bg-navy-slate/80 flex items-center justify-center">
               <Image
@@ -248,7 +267,7 @@ export default function Header() {
           </div>
 
           {/* Mobile hamburger menu */}
-          <div className="lg:hidden flex-shrink-0 ml-2 relative z-[110]">
+          <div className="lg:hidden flex-shrink-0 ml-2 relative z-[160]">
             <button
               ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
@@ -275,7 +294,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay & Drawer */}
       <div
-        className={`lg:hidden fixed inset-0 z-[100] transition-all duration-300 ${
+        className={`lg:hidden fixed inset-0 z-[140] w-full h-[100dvh] transition-all duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -283,7 +302,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsOpen(false)}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-default w-full h-full border-none focus:outline-none"
+          className="absolute inset-0 bg-black/75 backdrop-blur-md cursor-default w-full h-full border-none focus:outline-none"
           aria-label="Close mobile menu"
           tabIndex={isOpen ? 0 : -1}
         />
@@ -295,7 +314,7 @@ export default function Header() {
           id="mobile-menu"
           inert={!isOpen ? true : undefined}
           aria-hidden={!isOpen}
-          className={`absolute inset-y-0 right-0 w-full max-w-xs sm:max-w-sm bg-navy-dark border-l border-gold/15 shadow-2xl flex flex-col justify-between pt-24 pb-10 px-6 overflow-y-auto overscroll-contain transform transition-transform duration-300 ease-in-out ${
+          className={`absolute inset-y-0 right-0 w-full sm:max-w-md bg-navy-dark border-l border-gold/15 shadow-2xl flex flex-col justify-between safe-pt-menu safe-pb-menu px-6 sm:px-10 overflow-y-auto overscroll-contain transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

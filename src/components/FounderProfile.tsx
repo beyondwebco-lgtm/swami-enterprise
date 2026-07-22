@@ -22,7 +22,7 @@ export default function FounderProfile() {
   ];
 
   return (
-    <section className="relative py-24 bg-navy-slate/40 border-t border-navy-slate/60">
+    <section className="relative py-16 sm:py-24 bg-navy-slate/40 border-t border-navy-slate/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Founder Portrait on the left (5 columns) */}
@@ -56,7 +56,7 @@ export default function FounderProfile() {
             <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
               Leadership
             </h2>
-            <h3 className="text-3xl sm:text-4xl font-bold text-warm-white leading-tight mb-6">
+            <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white leading-tight mb-6">
               Mr. Sameer Dalvi
             </h3>
 

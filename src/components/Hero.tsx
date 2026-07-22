@@ -28,7 +28,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90dvh] flex items-center justify-center pt-32 pb-24 overflow-hidden bg-navy-dark">
+    <section className="relative min-h-[90dvh] flex items-center justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden bg-navy-dark">
       {/* Background glowing gradients */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gold/5 rounded-full blur-[120px] animate-pulse-slow" />
@@ -62,7 +62,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Hero Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-warm-white leading-tight mb-6">
+          <h1 className="text-[clamp(2.25rem,6vw,3.75rem)] font-extrabold tracking-tight text-warm-white leading-tight mb-6">
             Guiding Your Financial Future with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold">
               Clarity and Confidence

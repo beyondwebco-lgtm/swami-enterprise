@@ -11,13 +11,13 @@ export default function Partners() {
   ];
 
   return (
-    <section id="partners" className="relative py-24 bg-navy-dark border-t border-navy-slate/40">
+    <section id="partners" className="relative py-16 sm:py-24 bg-navy-dark border-t border-navy-slate/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
             Collaborations
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold text-warm-white">
+          <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white">
             Our Trusted Partners
           </h3>
           <div className="w-16 h-1 bg-gold mx-auto mt-4 rounded" />

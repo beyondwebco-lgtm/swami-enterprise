@@ -58,7 +58,7 @@ export default function Footer() {
                   src="/logo.jpeg"
                   alt="Swami Enterprises Logo"
                   fill
-                  className="object-cover"
+                  className="object-contain p-0.5"
                 />
               </div>
               <div className="flex flex-col">

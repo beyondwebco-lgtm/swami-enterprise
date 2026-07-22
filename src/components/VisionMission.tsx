@@ -2,7 +2,7 @@ import { Eye, Target } from "lucide-react";
 
 export default function VisionMission() {
   return (
-    <section className="relative py-24 bg-navy-slate/20 border-t border-navy-slate/40">
+    <section className="relative py-16 sm:py-24 bg-navy-slate/20 border-t border-navy-slate/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Vision Card */}

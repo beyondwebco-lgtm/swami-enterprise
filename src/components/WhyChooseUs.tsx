@@ -54,7 +54,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-us" className="relative py-24 bg-navy-dark">
+    <section id="why-us" className="relative py-16 sm:py-24 bg-navy-dark">
       {/* Light visual graph pattern in background */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-navy-light/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
           <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
             Our Edge
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-bold text-warm-white">
+          <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white">
             Why Choose Swami Enterprises?
           </h3>
           <div className="w-16 h-1 bg-gold mx-auto mt-4 rounded" />

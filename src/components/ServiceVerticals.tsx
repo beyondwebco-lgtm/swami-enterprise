@@ -104,7 +104,7 @@ export default function ServiceVerticals() {
   };
 
   return (
-    <section id="services" className="relative py-24 bg-navy-dark">
+    <section id="services" className="relative py-16 sm:py-24 bg-navy-dark">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/3 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,9 +112,9 @@ export default function ServiceVerticals() {
           <h2 className="text-xs uppercase tracking-widest font-semibold text-gold mb-3">
             Our Offerings
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold text-warm-white">
+          <h3 className="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-warm-white">
             Complete Financial Solutions for Every Stage of Life
-          </p>
+          </h3>
           <div className="w-16 h-1 bg-gold mx-auto mt-4 rounded" />
         </div>
 
